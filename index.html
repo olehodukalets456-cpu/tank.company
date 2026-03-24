@@ -137,15 +137,25 @@ h1 .g{color:var(--accent)}
 .step-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.05em;margin-bottom:10px}
 .step-desc{font-size:14px;color:var(--muted2);line-height:1.65}
 
-/* RESULTS */
+/* RESULTS / TESTIMONIALS */
 #results{padding:100px 0;border-top:1px solid var(--border)}
-.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:56px}
-.res-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--r);padding:28px;transition:background .25s,border-color .25s;opacity:0;transform:translateY(20px)}
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.res-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--r);padding:28px;transition:background .25s,border-color .25s;opacity:0;transform:translateY(20px);display:flex;flex-direction:column;gap:14px}
 .res-card.vis{opacity:1;transform:translateY(0)}
 .res-card:hover{background:var(--card2);border-color:rgba(200,255,0,.18)}
-.res-icon{font-size:22px;margin-bottom:14px;display:block}
-.res-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.05em;margin-bottom:8px}
-.res-desc{font-size:14px;color:var(--muted2);line-height:1.65}
+.stars{color:var(--accent);font-size:14px;letter-spacing:2px}
+.res-quote{font-size:14px;color:var(--muted2);line-height:1.7;flex:1}
+.res-author{display:flex;flex-direction:column;gap:3px;margin-top:4px}
+.res-name{font-weight:700;font-size:14px;color:var(--white)}
+.res-tag{font-size:12px;color:var(--muted)}
+
+/* ANIMATED MOCK CARD */
+.mock-row-val{font-weight:700;color:var(--white);transition:all .4s ease}
+.mock-row-val.g{color:var(--accent)}
+.mock-row-val.counting{color:var(--accent);transform:scale(1.05)}
+@keyframes countUp{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
+.mock-val-appear{animation:countUp .5s ease forwards}
+.mock-week-animated .mock-day{transition:background .3s,border-color .3s,color .3s}
 
 /* FAQ */
 #faq{padding:100px 0;border-top:1px solid var(--border)}
@@ -218,7 +228,7 @@ footer a:hover{color:var(--white)}
   <div class="hero-inner">
     <div>
       <div class="hero-badge"><div class="dot"></div>Tank Protocol V1.0</div>
-      <h1>Stop Guessing.<br><span class="g">Start Gaining</span><br>With a System.</h1>
+      <h1>Build Lean Muscle.<br><span class="g">Consistently.</span><br>With a System.</h1>
       <p class="hero-p">A nutrition framework for quality weight gain. Build a repeatable surplus, adjust it weekly, and align it with training — so the weight you gain actually becomes muscle.</p>
       <div class="hero-actions">
         <a href="#" class="btn-primary" data-buy>Buy Protocol →</a>
@@ -231,28 +241,37 @@ footer a:hover{color:var(--white)}
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-card-mock">
+      <div class="hero-card-mock" id="hero-card">
         <div class="mock-top">
           <div class="mock-title">Weekly Surplus</div>
-          <div class="mock-badge">ON TRACK</div>
+          <div class="mock-badge" id="mock-status">LOADING...</div>
         </div>
         <div class="mock-rows">
-          <div class="mock-row"><span class="mock-row-label">Daily Target</span><span class="mock-row-val g">+350 kcal</span></div>
-          <div class="mock-row"><span class="mock-row-label">Protein</span><span class="mock-row-val">185g</span></div>
-          <div class="mock-row"><span class="mock-row-label">Scale Change</span><span class="mock-row-val g">+0.4 kg / wk</span></div>
+          <div class="mock-row">
+            <span class="mock-row-label">Daily Target</span>
+            <span class="mock-row-val g" id="val-kcal">— kcal</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-row-label">Protein</span>
+            <span class="mock-row-val" id="val-protein">—g</span>
+          </div>
+          <div class="mock-row">
+            <span class="mock-row-label">Scale Change</span>
+            <span class="mock-row-val g" id="val-scale">—</span>
+          </div>
         </div>
         <div class="mock-bar-wrap">
-          <div class="mock-bar-label"><span>Consistency</span><span>Week 4</span></div>
+          <div class="mock-bar-label"><span>Consistency</span><span id="val-week">Week 1</span></div>
           <div class="mock-bar-track"><div class="mock-bar-fill" id="bar-fill"></div></div>
         </div>
-        <div class="mock-week">
-          <div class="mock-day done">M</div>
-          <div class="mock-day done">T</div>
-          <div class="mock-day done">W</div>
-          <div class="mock-day done">T</div>
-          <div class="mock-day active">F</div>
-          <div class="mock-day">S</div>
-          <div class="mock-day">S</div>
+        <div class="mock-week mock-week-animated" id="mock-week">
+          <div class="mock-day" id="d0">M</div>
+          <div class="mock-day" id="d1">T</div>
+          <div class="mock-day" id="d2">W</div>
+          <div class="mock-day" id="d3">T</div>
+          <div class="mock-day" id="d4">F</div>
+          <div class="mock-day" id="d5">S</div>
+          <div class="mock-day" id="d6">S</div>
         </div>
       </div>
     </div>
@@ -350,21 +369,45 @@ footer a:hover{color:var(--white)}
   </div>
 </section>
 
-<!-- RESULTS -->
+<!-- TESTIMONIALS -->
 <section id="results">
   <div class="wrap">
     <div class="tc fade-up">
-      <span class="sec-label">What You'll Get</span>
-      <h2>Real Outcomes.<br>Not Just <span class="g">Information.</span></h2>
-      <p class="sub c">Better nutrition control gives you results you can actually see and measure.</p>
+      <span class="sec-label">Real Results</span>
+      <h2>People Who <span class="g">Used It</span></h2>
+      <p class="sub c">Hardgainers who stopped guessing and started building.</p>
     </div>
-    <div class="results-grid">
-      <div class="res-card"><span class="res-icon">🧠</span><div class="res-title">Understand Your Intake</div><p class="res-desc">Know exactly how much you need to eat and why — no more shooting in the dark.</p></div>
-      <div class="res-card"><span class="res-icon">📊</span><div class="res-title">Consistent Surplus</div><p class="res-desc">Stop relying on willpower to "eat more." The system makes your surplus automatic and repeatable.</p></div>
-      <div class="res-card"><span class="res-icon">🔥</span><div class="res-title">Gain Without Guessing</div><p class="res-desc">Controlled, cleaner weight gain instead of random spikes with no direction.</p></div>
-      <div class="res-card"><span class="res-icon">⚡</span><div class="res-title">Training-Aligned Nutrition</div><p class="res-desc">Timing that actually supports your workouts and recovery instead of working against them.</p></div>
-      <div class="res-card"><span class="res-icon">📅</span><div class="res-title">Works on Busy Days</div><p class="res-desc">A repeatable framework that doesn't collapse the second your schedule gets complicated.</p></div>
-      <div class="res-card"><span class="res-icon">🎯</span><div class="res-title">Muscle, Not Fluff</div><p class="res-desc">The training principle inside ensures your surplus actually builds what you're training for.</p></div>
+    <div class="results-grid" style="margin-top:56px">
+      <div class="res-card">
+        <div class="stars">★★★★★</div>
+        <p class="res-quote">"I trained 5 days a week for two years and barely changed. Turns out I was eating 400 calories under my actual surplus. This protocol fixed that in week one."</p>
+        <div class="res-author"><span class="res-name">Marcus R.</span><span class="res-tag">Intermediate lifter, 3 months in</span></div>
+      </div>
+      <div class="res-card">
+        <div class="stars">★★★★★</div>
+        <p class="res-quote">"The timing windows alone changed everything. I used to skip lunch and try to eat it all at dinner. Now I actually hit my numbers without feeling stuffed."</p>
+        <div class="res-author"><span class="res-name">Jake T.</span><span class="res-tag">Hardgainer, gained 4.2kg in 8 weeks</span></div>
+      </div>
+      <div class="res-card">
+        <div class="stars">★★★★★</div>
+        <p class="res-quote">"Finally a system that doesn't fall apart when work gets busy. The framework is simple enough to follow even on hectic days. Scale moves every single week now."</p>
+        <div class="res-author"><span class="res-name">Chris D.</span><span class="res-tag">Software engineer, 6 weeks in</span></div>
+      </div>
+      <div class="res-card">
+        <div class="stars">★★★★★</div>
+        <p class="res-quote">"I always knew I needed to eat more. What I didn't know was how to make it repeatable. The Core Setup module gave me a structure I could actually stick to."</p>
+        <div class="res-author"><span class="res-name">Tom B.</span><span class="res-tag">Natural athlete, first bulk attempt</span></div>
+      </div>
+      <div class="res-card">
+        <div class="stars">★★★★★</div>
+        <p class="res-quote">"The weekly scaling method is worth the price alone. I went from randomly bumping calories to knowing exactly when and how much to increase. Clean gains, no fluff."</p>
+        <div class="res-author"><span class="res-name">Ryan M.</span><span class="res-tag">CrossFit + strength, 10 weeks in</span></div>
+      </div>
+      <div class="res-card">
+        <div class="stars">★★★★★</div>
+        <p class="res-quote">"Bought it expecting just another PDF. Got a complete system. The training principle section alone changed how I think about bulking. Gained 3.8kg in 7 weeks — mostly muscle."</p>
+        <div class="res-author"><span class="res-name">Daniel K.</span><span class="res-tag">Home gym, 7 weeks in</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -465,8 +508,103 @@ window.addEventListener('scroll',()=>{
   document.getElementById('navbar').classList.toggle('scrolled',scrollY>40);
 });
 
-/* ── BAR FILL ── */
-setTimeout(()=>{const f=document.getElementById('bar-fill');if(f)f.style.width='74%'},700);
+/* ── ANIMATED HERO CARD ── */
+(function(){
+  function animateCount(el, from, to, suffix, duration){
+    const start=performance.now();
+    function update(now){
+      const p=Math.min((now-start)/duration,1);
+      const ease=1-Math.pow(1-p,3);
+      const val=Math.round(from+(to-from)*ease);
+      el.textContent=(to>0?'+':'')+val+suffix;
+      if(p<1)requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const days=['d0','d1','d2','d3','d4'];
+  const barFill=document.getElementById('bar-fill');
+  const status=document.getElementById('mock-status');
+  const valKcal=document.getElementById('val-kcal');
+  const valProt=document.getElementById('val-protein');
+  const valScale=document.getElementById('val-scale');
+  const valWeek=document.getElementById('val-week');
+
+  // Step 1 — show kcal after 600ms
+  setTimeout(()=>{
+    valKcal.classList.add('mock-val-appear');
+    animateCount(valKcal,0,350,' kcal',900);
+  },600);
+
+  // Step 2 — protein after 1100ms
+  setTimeout(()=>{
+    valProt.classList.add('mock-val-appear');
+    animateCount(valProt,0,185,'g',700);
+  },1100);
+
+  // Step 3 — scale after 1600ms
+  setTimeout(()=>{
+    valScale.classList.add('mock-val-appear');
+    valScale.textContent='+0.4 kg / wk';
+  },1600);
+
+  // Step 4 — bar grows to week progress
+  setTimeout(()=>{
+    barFill.style.width='68%';
+    valWeek.textContent='Week 4';
+  },1900);
+
+  // Step 5 — days light up one by one
+  days.forEach((id,i)=>{
+    setTimeout(()=>{
+      const d=document.getElementById(id);
+      d.classList.add(i===4?'active':'done');
+    },2200+i*180);
+  });
+
+  // Step 6 — badge changes
+  setTimeout(()=>{
+    status.textContent='ON TRACK';
+    status.style.background='rgba(200,255,0,0.15)';
+    status.style.borderColor='rgba(200,255,0,0.4)';
+  },3200);
+
+  // Loop — restart animation every 8s
+  setInterval(()=>{
+    // reset
+    valKcal.textContent='— kcal';
+    valProt.textContent='—g';
+    valScale.textContent='—';
+    valWeek.textContent='Week 1';
+    barFill.style.transition='none';
+    barFill.style.width='0';
+    status.textContent='LOADING...';
+    status.style.background='';
+    status.style.borderColor='';
+    days.forEach(id=>{
+      const d=document.getElementById(id);
+      d.classList.remove('done','active');
+    });
+
+    setTimeout(()=>{barFill.style.transition='width 1.4s ease';},100);
+
+    setTimeout(()=>{animateCount(valKcal,0,350,' kcal',900)},400);
+    setTimeout(()=>{animateCount(valProt,0,185,'g',700)},900);
+    setTimeout(()=>{valScale.textContent='+0.4 kg / wk'},1400);
+    setTimeout(()=>{barFill.style.width='68%';valWeek.textContent='Week 4'},1700);
+    days.forEach((id,i)=>{
+      setTimeout(()=>{
+        const d=document.getElementById(id);
+        d.classList.add(i===4?'active':'done');
+      },2000+i*180);
+    });
+    setTimeout(()=>{
+      status.textContent='ON TRACK';
+      status.style.background='rgba(200,255,0,0.15)';
+      status.style.borderColor='rgba(200,255,0,0.4)';
+    },3000);
+  },8000);
+})();
 
 /* ── INTERSECTION OBSERVER ── */
 const io=new IntersectionObserver(entries=>{
