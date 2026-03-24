@@ -149,10 +149,28 @@ h1 .g{color:var(--accent)}
 .res-name{font-weight:700;font-size:14px;color:var(--white)}
 .res-tag{font-size:12px;color:var(--muted)}
 
+/* CAROUSEL (mobile) */
+.carousel-wrap{position:relative;overflow:hidden;margin-top:56px}
+.carousel-track{display:flex;gap:10px;transition:transform .4s ease}
+.carousel-dots{display:none;justify-content:center;gap:8px;margin-top:20px}
+.carousel-dot{width:7px;height:7px;border-radius:50%;background:var(--border2);transition:background .2s,transform .2s;cursor:pointer}
+.carousel-dot.active{background:var(--accent);transform:scale(1.2)}
+
+/* MID CTA BANNER */
+.mid-cta{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--card);padding:56px 64px;display:flex;align-items:center;justify-content:space-between;gap:32px;position:relative;z-index:1;overflow:hidden}
+.mid-cta::before{content:'';position:absolute;left:-100px;top:50%;transform:translateY(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(200,255,0,0.05) 0%,transparent 70%);pointer-events:none}
+.mid-cta-text h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,3.5vw,44px);letter-spacing:.04em;line-height:1;margin-bottom:8px}
+.mid-cta-text h3 .g{color:var(--accent)}
+.mid-cta-text p{font-size:15px;color:var(--muted2)}
+
+/* INSTAGRAM LINK */
+.insta-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted2);font-size:13px;text-decoration:none;transition:color .2s}
+.insta-link:hover{color:var(--accent)}
+.insta-icon{width:18px;height:18px}
+
 /* ANIMATED MOCK CARD */
 .mock-row-val{font-weight:700;color:var(--white);transition:all .4s ease}
 .mock-row-val.g{color:var(--accent)}
-.mock-row-val.counting{color:var(--accent);transform:scale(1.05)}
 @keyframes countUp{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
 .mock-val-appear{animation:countUp .5s ease forwards}
 .mock-week-animated .mock-day{transition:background .3s,border-color .3s,color .3s}
@@ -198,11 +216,19 @@ footer a:hover{color:var(--white)}
   .hero-inner{grid-template-columns:1fr}
   .hero-visual{display:none}
   .wrap{padding:0 24px}
-  .problems-grid,.forwho-grid,.inside-grid,.results-grid{grid-template-columns:1fr}
+  .problems-grid,.forwho-grid,.inside-grid{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr;gap:32px}
   .steps::before{display:none}
   .cta-box{padding:48px 24px}
   footer{flex-direction:column;gap:12px;padding:24px;text-align:center}
+  /* carousel on mobile */
+  .results-grid{grid-template-columns:100%;flex-wrap:nowrap;display:flex}
+  .carousel-wrap{padding:0 24px}
+  .carousel-track{padding-bottom:4px}
+  .res-card{min-width:calc(100vw - 80px);opacity:1;transform:none}
+  .carousel-dots{display:flex}
+  /* mid cta */
+  .mid-cta{flex-direction:column;text-align:center;padding:48px 24px}
 }
 </style>
 </head>
@@ -218,6 +244,10 @@ footer a:hover{color:var(--white)}
     <li><a href="#inside">What's Inside</a></li>
     <li><a href="#how">How It Works</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://www.instagram.com/tank_company" target="_blank" class="insta-link">
+      <svg class="insta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @tank_company
+    </a></li>
   </ul>
   <a href="#" class="btn-nav" data-buy>Buy Protocol →</a>
 </nav>
@@ -377,7 +407,9 @@ footer a:hover{color:var(--white)}
       <h2>People Who <span class="g">Used It</span></h2>
       <p class="sub c">Hardgainers who stopped guessing and started building.</p>
     </div>
-    <div class="results-grid" style="margin-top:56px">
+  </div>
+  <div class="carousel-wrap">
+    <div class="carousel-track results-grid" id="carousel-track">
       <div class="res-card">
         <div class="stars">★★★★★</div>
         <p class="res-quote">"I trained 5 days a week for two years and barely changed. Turns out I was eating 400 calories under my actual surplus. This protocol fixed that in week one."</p>
@@ -409,8 +441,18 @@ footer a:hover{color:var(--white)}
         <div class="res-author"><span class="res-name">Daniel K.</span><span class="res-tag">Home gym, 7 weeks in</span></div>
       </div>
     </div>
+    <div class="carousel-dots" id="carousel-dots"></div>
   </div>
 </section>
+
+<!-- MID CTA -->
+<div class="mid-cta fade-up">
+  <div class="mid-cta-text">
+    <h3>The Scale Won't Move<br><span class="g">Until the System Does.</span></h3>
+    <p>One-time purchase. Instant access. Start this week.</p>
+  </div>
+  <a href="#" class="btn-primary" data-buy>Buy Protocol →</a>
+</div>
 
 <!-- FAQ -->
 <section id="faq">
@@ -453,6 +495,10 @@ footer a:hover{color:var(--white)}
     <a href="#problems">The Problem</a>
     <a href="#inside">What's Inside</a>
     <a href="#faq">FAQ</a>
+    <a href="https://www.instagram.com/tank_company" target="_blank" class="insta-link">
+      <svg class="insta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      Instagram
+    </a>
     <a href="#" data-buy>Get It →</a>
   </div>
   <span>© 2025 TANK Company</span>
@@ -630,7 +676,55 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   });
 });
 
-/* ── GUMROAD OVERLAY ── */
+/* ── CAROUSEL (mobile only) ── */
+(function(){
+  const track=document.getElementById('carousel-track');
+  const dotsWrap=document.getElementById('carousel-dots');
+  if(!track||!dotsWrap)return;
+
+  const cards=[...track.querySelectorAll('.res-card')];
+  let current=0;
+  let isMobile=window.innerWidth<=900;
+
+  // build dots
+  cards.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='carousel-dot'+(i===0?' active':'');
+    d.addEventListener('click',()=>goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(idx){
+    current=idx;
+    if(!isMobile)return;
+    const cardW=cards[0].offsetWidth+10;
+    track.style.transform=`translateX(-${current*cardW}px)`;
+    dotsWrap.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===current));
+  }
+
+  // swipe support
+  let startX=0;
+  track.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});
+  track.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-startX;
+    if(Math.abs(dx)>40){
+      if(dx<0&&current<cards.length-1)goTo(current+1);
+      if(dx>0&&current>0)goTo(current-1);
+    }
+  },{passive:true});
+
+  // auto-advance every 4s on mobile
+  setInterval(()=>{
+    if(!isMobile)return;
+    goTo((current+1)%cards.length);
+  },4000);
+
+  window.addEventListener('resize',()=>{
+    isMobile=window.innerWidth<=900;
+    if(!isMobile){track.style.transform='';dotsWrap.querySelectorAll('.carousel-dot').forEach(d=>d.classList.remove('active'));}
+    else goTo(current);
+  });
+})();
 const GUMROAD_URL='https://tankcompany.gumroad.com/l/LiquidNutritionSystem';
 document.querySelectorAll('[data-buy]').forEach(btn=>{
   btn.addEventListener('click',function(e){
