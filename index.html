@@ -494,20 +494,10 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
 
 /* ── GUMROAD OVERLAY ── */
 const GUMROAD_URL='https://tankcompany.gumroad.com/l/LiquidNutritionSystem';
-(function(){
-  const s=document.createElement('script');
-  s.src='https://gumroad.com/js/gumroad.js';
-  s.async=true;
-  document.head.appendChild(s);
-})();
 document.querySelectorAll('[data-buy]').forEach(btn=>{
   btn.addEventListener('click',function(e){
     e.preventDefault();
-    if(window.GumroadOverlay){
-      window.GumroadOverlay.show(GUMROAD_URL);
-    } else {
-      window.open(GUMROAD_URL,'_blank');
-    }
+    window.open(GUMROAD_URL+'?wanted=true','_blank','width=760,height=620,left='+(screen.width/2-380)+',top='+(screen.height/2-310)+',resizable=yes,scrollbars=yes');
   });
 });
 </script>
