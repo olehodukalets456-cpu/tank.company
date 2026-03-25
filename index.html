@@ -170,9 +170,38 @@ h1 .g{color:var(--accent)}
 .res-card:hover{background:var(--card2);border-color:rgba(200,255,0,.18)}
 .stars{color:var(--accent);font-size:14px;letter-spacing:2px}
 .res-quote{font-size:14px;color:var(--muted2);line-height:1.7;flex:1}
-.res-author{display:flex;flex-direction:column;gap:3px;margin-top:4px}
+.res-author{display:flex;align-items:center;gap:12px;margin-top:4px}
+.res-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;font-weight:700;flex-shrink:0;color:#000}
+.res-author-info{display:flex;flex-direction:column;gap:2px}
 .res-name{font-weight:700;font-size:14px;color:var(--white)}
 .res-tag{font-size:12px;color:var(--muted)}
+
+/* PRICE ANCHOR */
+.price-anchor{display:flex;align-items:baseline;justify-content:center;gap:12px;margin-bottom:24px}
+.price-old{font-size:24px;color:var(--muted);text-decoration:line-through}
+.price-new{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--accent);line-height:1}
+.price-label{font-size:13px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;align-self:flex-end;padding-bottom:8px}
+
+/* PREVIEW SECTION */
+#preview{padding:100px 0;border-top:1px solid var(--border)}
+.preview-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.preview-text .sec-label{margin-bottom:14px}
+.preview-text h2{margin-bottom:16px}
+.preview-text p{font-size:16px;color:var(--muted2);line-height:1.75;margin-bottom:32px}
+.preview-doc{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border2);background:var(--card);box-shadow:0 0 60px rgba(200,255,0,0.05)}
+.preview-doc-bar{background:var(--bg2);padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.doc-dot{width:10px;height:10px;border-radius:50%}
+.preview-doc-body{padding:24px;font-size:13px;line-height:1.6}
+.preview-table{width:100%;border-collapse:collapse;font-size:12px}
+.preview-table th{text-align:left;padding:8px 10px;color:var(--accent);font-weight:600;letter-spacing:.06em;font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border2)}
+.preview-table td{padding:10px;color:var(--muted2);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+.preview-table td:first-child{color:var(--white);font-weight:600;white-space:nowrap}
+.preview-table td .fix{color:var(--accent);font-size:11px}
+.preview-blur{position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(transparent,var(--card));display:flex;align-items:flex-end;justify-content:center;padding-bottom:20px}
+.preview-blur-label{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:900px){
+  .preview-inner{grid-template-columns:1fr}
+}
 
 /* CAROUSEL (mobile) */
 .carousel-wrap{position:relative;overflow:hidden;margin-top:56px}
@@ -295,7 +324,12 @@ footer a:hover{color:var(--white)}
       <div class="hero-pills">
         <div class="pill"><div class="dot"></div>One-time. No subscription</div>
         <div class="pill"><div class="dot"></div>Instant delivery</div>
-        <div class="pill"><div class="dot"></div>$29 one time</div>
+        <div class="pill">
+          <div class="dot"></div>
+          <span style="color:var(--muted);text-decoration:line-through;margin-right:5px">$99</span>
+          <span style="color:var(--accent);font-weight:600">$29</span>
+          <span style="margin-left:3px">one time</span>
+        </div>
       </div>
     </div>
     <div class="hero-visual">
@@ -458,32 +492,32 @@ footer a:hover{color:var(--white)}
       <div class="res-card">
         <div class="stars">★★★★☆</div>
         <p class="res-quote">"Was skeptical — I've read r/gainit top posts and figured I knew everything. Bought it anyway. The calibration algorithm alone is worth it. I was increasing calories randomly before; now I have a Sunday ritual that takes 3 minutes. Gained 3.1kg in 6 weeks, roughly 60–65% lean based on how I look. Not magic, but it works."</p>
-        <div class="res-author"><span class="res-name">Marcus R.</span><span class="res-tag">74kg → 77.1kg in 6 weeks · gave 4 stars because the PDF formatting could be cleaner</span></div>
+        <div class="res-author"><div class="res-avatar" style="background:#4ade80">M</div><div class="res-author-info"><span class="res-name">Marcus R.</span><span class="res-tag">74kg → 77.1kg in 6 weeks · gave 4 stars because the PDF formatting could be cleaner</span></div></div>
       </div>
       <div class="res-card">
         <div class="stars">★★★★★</div>
         <p class="res-quote">"Tried Protocol A first week and got bloated. Almost quit. Then I read the debugging table — turns out I was lactose sensitive and drinking it too fast. Switched to Protocol B, slowed intake to 5 minutes. Problem gone. That table alone saved the whole thing. Up 4.4kg in 9 weeks."</p>
-        <div class="res-author"><span class="res-name">Jake T.</span><span class="res-tag">67kg → 71.4kg in 9 weeks · had to troubleshoot week 1</span></div>
+        <div class="res-author"><div class="res-avatar" style="background:#60a5fa">J</div><div class="res-author-info"><span class="res-name">Jake T.</span><span class="res-tag">67kg → 71.4kg in 9 weeks · had to troubleshoot week 1</span></div></div>
       </div>
       <div class="res-card">
         <div class="stars">★★★★☆</div>
         <p class="res-quote">"I thought this would be basic stuff I already knew. Half of it was. The other half — specifically the timing windows and why you never drink before a meal — I hadn't seen explained that clearly anywhere. The 'Kill Zone' concept actually explains why my previous bulk attempts stalled. Solid."</p>
-        <div class="res-author"><span class="res-name">Chris D.</span><span class="res-tag">Software engineer, trained for 3 years · found 50% new, 50% familiar</span></div>
+        <div class="res-author"><div class="res-avatar" style="background:#f97316">C</div><div class="res-author-info"><span class="res-name">Chris D.</span><span class="res-tag">Software engineer, trained for 3 years · found 50% new, 50% familiar</span></div></div>
       </div>
       <div class="res-card">
         <div class="stars">★★★★★</div>
         <p class="res-quote">"Honestly bought it expecting to ask for a refund. The ramp-up protocol is the thing nobody talks about — every other guide just says 'eat X calories' with no transition plan. Starting at 50% and ramping over 2 weeks made it actually stick. Scale went from 68 to 71.8kg. First time in two years of trying."</p>
-        <div class="res-author"><span class="res-name">Tom B.</span><span class="res-tag">68kg → 71.8kg · 3rd attempt at bulking, first one that worked</span></div>
+        <div class="res-author"><div class="res-avatar" style="background:#a78bfa">T</div><div class="res-author-info"><span class="res-name">Tom B.</span><span class="res-tag">68kg → 71.8kg · 3rd attempt at bulking, first one that worked</span></div></div>
       </div>
       <div class="res-card">
         <div class="stars">★★★★☆</div>
         <p class="res-quote">"Protocol C is not for the faint-hearted — 1,500kcal in one shake is a lot. Used it for one week when weight stalled, then went back to A. It worked. Overall the system is more practical than anything I found free online, and I've looked. The Sunday weigh-in + decision tree is the best part."</p>
-        <div class="res-author"><span class="res-name">Ryan M.</span><span class="res-tag">CrossFit + strength training · used all 3 protocols over 10 weeks</span></div>
+        <div class="res-author"><div class="res-avatar" style="background:#fb923c">R</div><div class="res-author-info"><span class="res-name">Ryan M.</span><span class="res-tag">CrossFit + strength training · used all 3 protocols over 10 weeks</span></div></div>
       </div>
       <div class="res-card">
         <div class="stars">★★★★★</div>
         <p class="res-quote">"The ingredient swap matrix saved me — I don't have access to some of the base ingredients. Didn't have to figure it out myself. 3.6kg gained in 8 weeks. I tracked body measurements too: waist stayed the same, chest and arms went up. That's the signal I was looking for."</p>
-        <div class="res-author"><span class="res-name">Daniel K.</span><span class="res-tag">78kg → 81.6kg in 8 weeks · tracked measurements, not just scale</span></div>
+        <div class="res-author"><div class="res-avatar" style="background:#34d399">D</div><div class="res-author-info"><span class="res-name">Daniel K.</span><span class="res-tag">78kg → 81.6kg in 8 weeks · tracked measurements, not just scale</span></div></div>
       </div>
     </div>
     <div class="carousel-dots" id="carousel-dots"></div>
@@ -509,16 +543,69 @@ footer a:hover{color:var(--white)}
   </div>
 </section>
 
+<!-- PREVIEW -->
+<section id="preview">
+  <div class="wrap">
+    <div class="preview-inner">
+      <div class="preview-text fade-up">
+        <span class="sec-label">Inside the Protocol</span>
+        <h2>See What You're<br><span class="g">Getting.</span></h2>
+        <p>This is one page from the System Debugging section — the part that tells you exactly what to do when something stops working. Every section is this specific.</p>
+        <a href="#" class="btn-primary" data-buy>Get Full Access — $29</a>
+      </div>
+      <div class="preview-doc fade-up">
+        <div class="preview-doc-bar">
+          <div class="doc-dot" style="background:#ff5f57"></div>
+          <div class="doc-dot" style="background:#febc2e"></div>
+          <div class="doc-dot" style="background:#28c840"></div>
+          <span style="font-size:12px;color:var(--muted);margin-left:8px">THE TANK PROTOCOL — System Debugging</span>
+        </div>
+        <div class="preview-doc-body">
+          <table class="preview-table">
+            <tr><th>Symptom</th><th>Root Cause</th><th>The Fix</th></tr>
+            <tr>
+              <td>Bloating</td>
+              <td>Lactose / intake too fast / weak enzymes</td>
+              <td><span class="fix">→ Switch to lactose-free. Extend intake to 5 min. Add digestive enzymes for 5 days.</span></td>
+            </tr>
+            <tr>
+              <td>Acne</td>
+              <td>Whey reaction / insulin spikes</td>
+              <td><span class="fix">→ Switch to beef or pea isolate. Remove honey/banana, add ZINC 25mg.</span></td>
+            </tr>
+            <tr>
+              <td>Nausea</td>
+              <td>Fat load too high / full stomach</td>
+              <td><span class="fix">→ Reduce oil to 5g, ramp up by 5g daily. Deploy only 60 min after a meal.</span></td>
+            </tr>
+            <tr>
+              <td>Scale stalled</td>
+              <td>Surplus too small / inconsistent timing</td>
+              <td><span class="fix">→ +1 tbsp olive oil (+120 kcal). Run calibration algorithm Sunday.</span></td>
+            </tr>
+          </table>
+        </div>
+        <div class="preview-blur"><span class="preview-blur-label">5 more sections inside</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section id="cta">
   <div class="wrap">
     <div class="cta-box fade-up">
       <div class="cta-inner">
-        <span class="sec-label">$29 · One Time · No Subscription</span>
+        <span class="sec-label">One-Time · No Subscription</span>
         <h2>The Information<br><span class="g">Exists. The System</span><br>Doesn't. Until Now.</h2>
         <p>We know you've seen a million guides like this. But this one has the calibration algorithm, the debugging table, and the ramp-up protocol — all in one place. That's the difference between knowing what to do and actually doing it for 8 weeks straight.</p>
-        <a href="#" class="btn-large" data-buy>Get The Tank Protocol — $29</a>
-        <p class="cta-note">One-time payment<span>·</span>Instant delivery<span>·</span>No subscription<span>·</span>Refund available via Gumroad</p>
+        <div class="price-anchor">
+          <span class="price-old">$99</span>
+          <span class="price-new">$29</span>
+          <span class="price-label">one time</span>
+        </div>
+        <a href="#" class="btn-large" data-buy>Get The Tank Protocol →</a>
+        <p class="cta-note">One-time payment<span>·</span>Instant delivery<span>·</span>No subscription</p>
       </div>
     </div>
   </div>
