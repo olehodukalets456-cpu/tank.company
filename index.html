@@ -185,22 +185,68 @@ h1 .g{color:var(--accent)}
 /* PREVIEW SECTION */
 #preview{padding:100px 0;border-top:1px solid var(--border)}
 .preview-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.preview-text .sec-label{margin-bottom:14px}
-.preview-text h2{margin-bottom:16px}
-.preview-text p{font-size:16px;color:var(--muted2);line-height:1.75;margin-bottom:32px}
-.preview-doc{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border2);background:var(--card);box-shadow:0 0 60px rgba(200,255,0,0.05)}
+.preview-text p{font-size:16px;color:var(--muted2);line-height:1.75;margin-top:14px;margin-bottom:28px}
+
+/* DOC NAV DOTS */
+.doc-nav-dots{display:flex;gap:10px;margin-top:4px}
+.doc-nav-dot{width:28px;height:4px;border-radius:2px;background:var(--border2);cursor:pointer;transition:background .3s,width .3s}
+.doc-nav-dot.active{background:var(--accent);width:44px}
+
+/* SLIDER */
+.doc-slider-wrap{position:relative;overflow:hidden;border-radius:16px}
+.doc-slider{display:flex;transition:none}
+.doc-slide{min-width:100%;opacity:0;transition:opacity .5s ease;position:absolute;top:0;left:0;width:100%;pointer-events:none}
+.doc-slide.active{opacity:1;position:relative;pointer-events:auto}
+
+/* DOC WINDOW */
+.preview-doc{border-radius:16px;overflow:hidden;border:1px solid var(--border2);background:var(--card)}
 .preview-doc-bar{background:var(--bg2);padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
 .doc-dot{width:10px;height:10px;border-radius:50%}
-.preview-doc-body{padding:24px;font-size:13px;line-height:1.6}
-.preview-table{width:100%;border-collapse:collapse;font-size:12px}
-.preview-table th{text-align:left;padding:8px 10px;color:var(--accent);font-weight:600;letter-spacing:.06em;font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border2)}
-.preview-table td{padding:10px;color:var(--muted2);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
-.preview-table td:first-child{color:var(--white);font-weight:600;white-space:nowrap}
-.preview-table td .fix{color:var(--accent);font-size:11px}
-.preview-blur{position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(transparent,var(--card));display:flex;align-items:flex-end;justify-content:center;padding-bottom:20px}
-.preview-blur-label{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.preview-doc-body{padding:0}
+
+/* SUPPLY CHAIN */
+.supply-doc{border-radius:16px;overflow:hidden;border:1px solid var(--border2);background:var(--card)}
+.supply-stats{display:flex;gap:0;margin-top:32px;border:1px solid var(--border2);border-radius:12px;overflow:hidden}
+.supply-stat{flex:1;padding:20px 16px;text-align:center;border-right:1px solid var(--border2)}
+.supply-stat:last-child{border-right:none}
+.supply-stat-num{font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1;margin-bottom:6px}
+.supply-stat-label{font-size:11px;color:var(--muted2);line-height:1.4}
+.supply-category{padding:14px 20px;border-bottom:1px solid var(--border)}
+.supply-category:last-child{border-bottom:none}
+.supply-cat-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.supply-items{display:flex;flex-direction:column;gap:6px}
+.supply-item{display:flex;align-items:center;gap:8px;font-size:12px}
+.si-name{color:var(--white);font-weight:500;min-width:120px}
+.si-qty{color:var(--muted2);min-width:80px}
+.si-note{color:var(--muted);font-size:11px;font-style:italic}
+
+/* 30-DAY TRACKER */
+.tracker-wrap{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:40px}
+.tracker-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;flex-wrap:wrap;gap:24px}
+.tracker-stats-wrap{display:flex;gap:24px}
+.tracker-stat{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:16px 24px}
+.tracker-stat span:first-child{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--accent);line-height:1}
+.tracker-stat span:last-child{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.tracker-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-bottom:16px}
+.tracker-day{aspect-ratio:1;border-radius:8px;background:var(--border);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted);cursor:pointer;transition:all .2s;position:relative;font-weight:600}
+.tracker-day:hover{border-color:rgba(200,255,0,.4);background:var(--accent-dim)}
+.tracker-day.done{background:rgba(200,255,0,.2);border-color:rgba(200,255,0,.5);color:var(--accent)}
+.tracker-day.done::after{content:'✓';font-size:12px}
+.tracker-day.done .day-num{display:none}
+.tracker-note{font-size:12px;color:var(--muted);text-align:center;letter-spacing:.04em}
+
+/* ANIMATED ICON in inside-card */
+.ic-icon{width:44px;height:44px;border-radius:10px;background:var(--accent-dim);border:1px solid rgba(200,255,0,.14);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px;position:relative;overflow:hidden}
+.ic-icon .icon-frame{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;transition:opacity .4s,transform .4s}
+.ic-icon .icon-frame.hidden{opacity:0;transform:translateY(8px)}
+
 @media(max-width:900px){
   .preview-inner{grid-template-columns:1fr}
+  .tracker-grid{grid-template-columns:repeat(6,1fr)}
+  .tracker-header{flex-direction:column}
+  .supply-stats{flex-direction:column}
+  .supply-stat{border-right:none;border-bottom:1px solid var(--border2)}
+  .supply-stat:last-child{border-bottom:none}
 }
 
 /* CAROUSEL (mobile) */
@@ -445,32 +491,32 @@ footer a:hover{color:var(--white)}
     </div>
     <div class="inside-grid">
       <div class="inside-card">
-        <div class="ic-icon">⚙️</div>
+        <div class="ic-icon"><div class="icon-frame">⚙️</div><div class="icon-frame hidden">🎯</div></div>
         <div class="ic-title">Your Exact Starting Point</div>
         <p class="ic-desc">Stop guessing your calories. You'll know your precise daily target — not a generic formula, but a number calibrated to your body and goal.</p>
       </div>
       <div class="inside-card">
-        <div class="ic-icon">📐</div>
+        <div class="ic-icon"><div class="icon-frame">📐</div><div class="icon-frame hidden">🔑</div></div>
         <div class="ic-title">The Rules That Make It Stick</div>
         <p class="ic-desc">Why most bulk attempts fail by day 3 — and the principles that prevent that. Simple enough to remember, specific enough to actually work.</p>
       </div>
       <div class="inside-card">
-        <div class="ic-icon">📈</div>
+        <div class="ic-icon"><div class="icon-frame">📈</div><div class="icon-frame hidden">📅</div></div>
         <div class="ic-title">Weekly Adjustments Without Guessing</div>
         <p class="ic-desc">A clear weekly process: did the scale move? By how much? Here's exactly what to do next. No forum threads, no second-guessing.</p>
       </div>
       <div class="inside-card">
-        <div class="ic-icon">⏱</div>
+        <div class="ic-icon"><div class="icon-frame">⏱</div><div class="icon-frame hidden">⚡</div></div>
         <div class="ic-title">When to Eat — and When Not To</div>
         <p class="ic-desc">The exact timing that lets you add hundreds of calories without killing your appetite for real meals. Most people get this backwards and wonder why they stall.</p>
       </div>
       <div class="inside-card">
-        <div class="ic-icon">🔧</div>
+        <div class="ic-icon"><div class="icon-frame">🔧</div><div class="icon-frame hidden">✅</div></div>
         <div class="ic-title">What To Do When Something Goes Wrong</div>
         <p class="ic-desc">Bloating, stalled scale, no appetite. Each problem maps to a specific fix. You'll never be stuck wondering what to change next.</p>
       </div>
       <div class="inside-card">
-        <div class="ic-icon">💪</div>
+        <div class="ic-icon"><div class="icon-frame">💪</div><div class="icon-frame hidden">🏗️</div></div>
         <div class="ic-title">How Training Connects to Nutrition</div>
         <p class="ic-desc">A surplus without the right training signal is just fat storage. This section shows exactly what you need to make sure your calories go toward muscle.</p>
       </div>
@@ -543,49 +589,90 @@ footer a:hover{color:var(--white)}
   </div>
 </section>
 
-<!-- PREVIEW -->
+<!-- PREVIEW — sliding gallery -->
 <section id="preview">
   <div class="wrap">
-    <div class="preview-inner">
-      <div class="preview-text fade-up">
-        <span class="sec-label">Inside the Protocol</span>
+    <div class="preview-inner fade-up">
+
+      <!-- LEFT TEXT -->
+      <div class="preview-text">
+        <span class="sec-label">Also Inside</span>
         <h2>See What You're<br><span class="g">Getting.</span></h2>
-        <p>This is one page from the System Debugging section — the part that tells you exactly what to do when something stops working. Every section is this specific.</p>
-        <a href="#" class="btn-primary" data-buy>Get Full Access — $29</a>
+        <p>Two tools that make the protocol actually executable — a complete shopping framework and a 30-day habit tracker. Both included.</p>
+        <div class="doc-nav-dots">
+          <div class="doc-nav-dot active" data-slide="0"></div>
+          <div class="doc-nav-dot" data-slide="1"></div>
+        </div>
       </div>
-      <div class="preview-doc fade-up">
-        <div class="preview-doc-bar">
-          <div class="doc-dot" style="background:#ff5f57"></div>
-          <div class="doc-dot" style="background:#febc2e"></div>
-          <div class="doc-dot" style="background:#28c840"></div>
-          <span style="font-size:12px;color:var(--muted);margin-left:8px">THE TANK PROTOCOL — System Debugging</span>
+
+      <!-- RIGHT: SLIDER -->
+      <div class="doc-slider-wrap">
+        <div class="doc-slider" id="doc-slider">
+
+          <!-- SLIDE 1: Shopping List -->
+          <div class="doc-slide active">
+            <div class="preview-doc">
+              <div class="preview-doc-bar">
+                <div class="doc-dot" style="background:#ff5f57"></div>
+                <div class="doc-dot" style="background:#febc2e"></div>
+                <div class="doc-dot" style="background:#28c840"></div>
+                <span style="font-size:12px;color:var(--muted);margin-left:8px">THE TANK PROTOCOL — Shopping List</span>
+              </div>
+              <div class="preview-doc-body" style="padding:0">
+                <div class="supply-category">
+                  <div class="supply-cat-label">⚡ Carbs (Energy)</div>
+                  <div class="supply-items">
+                    <div class="supply-item"><span class="si-name">Oats (Rolled)</span><span class="si-qty">1kg bag</span><span class="si-note">bulk = –40% cost</span></div>
+                    <div class="supply-item"><span class="si-name">Bananas</span><span class="si-qty">7–10 pcs</span><span class="si-note">freeze extras</span></div>
+                    <div class="supply-item"><span class="si-name">Honey</span><span class="si-qty">250g</span><span class="si-note">optional sweetener</span></div>
+                  </div>
+                </div>
+                <div class="supply-category">
+                  <div class="supply-cat-label">🔥 Fats (Density)</div>
+                  <div class="supply-items">
+                    <div class="supply-item"><span class="si-name">Olive Oil</span><span class="si-qty">500ml</span><span class="si-note">primary calibration tool</span></div>
+                    <div class="supply-item"><span class="si-name">Peanut Butter</span><span class="si-qty">400g jar</span><span class="si-note">no added sugar</span></div>
+                  </div>
+                </div>
+                <div class="supply-category">
+                  <div class="supply-cat-label">💪 Protein (Bricks)</div>
+                  <div class="supply-items">
+                    <div class="supply-item"><span class="si-name">Whey Protein</span><span class="si-qty">2kg tub</span><span class="si-note">never buy sample packs</span></div>
+                    <div class="supply-item"><span class="si-name">Whole Milk</span><span class="si-qty">2L / week</span><span class="si-note">or lactose-free alt</span></div>
+                  </div>
+                </div>
+                <div class="supply-category">
+                  <div class="supply-cat-label">🔧 Hardware</div>
+                  <div class="supply-items">
+                    <div class="supply-item"><span class="si-name">High-speed Blender</span><span class="si-qty">required</span><span class="si-note">system requirement</span></div>
+                    <div class="supply-item"><span class="si-name">Kitchen Scale</span><span class="si-qty">required</span><span class="si-note">calibration tool</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SLIDE 2: 30-Day Tracker -->
+          <div class="doc-slide">
+            <div class="preview-doc">
+              <div class="preview-doc-bar">
+                <div class="doc-dot" style="background:#ff5f57"></div>
+                <div class="doc-dot" style="background:#febc2e"></div>
+                <div class="doc-dot" style="background:#28c840"></div>
+                <span style="font-size:12px;color:var(--muted);margin-left:8px">THE TANK PROTOCOL — 30-Day Tracker</span>
+              </div>
+              <div class="preview-doc-body" style="padding:20px">
+                <div style="font-size:11px;color:var(--muted2);margin-bottom:14px;letter-spacing:.04em">Click a day to mark it complete. Don't break the chain.</div>
+                <div class="tracker-grid" id="tracker-grid"></div>
+                <div style="display:flex;gap:24px;margin-top:16px">
+                  <div><span id="tracker-done" style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent)">0</span><span style="font-size:11px;color:var(--muted);display:block;letter-spacing:.06em;text-transform:uppercase">days done</span></div>
+                  <div><span id="tracker-streak" style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent)">0</span><span style="font-size:11px;color:var(--muted);display:block;letter-spacing:.06em;text-transform:uppercase">day streak</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="preview-doc-body">
-          <table class="preview-table">
-            <tr><th>Symptom</th><th>Root Cause</th><th>The Fix</th></tr>
-            <tr>
-              <td>Bloating</td>
-              <td>Lactose / intake too fast / weak enzymes</td>
-              <td><span class="fix">→ Switch to lactose-free. Extend intake to 5 min. Add digestive enzymes for 5 days.</span></td>
-            </tr>
-            <tr>
-              <td>Acne</td>
-              <td>Whey reaction / insulin spikes</td>
-              <td><span class="fix">→ Switch to beef or pea isolate. Remove honey/banana, add ZINC 25mg.</span></td>
-            </tr>
-            <tr>
-              <td>Nausea</td>
-              <td>Fat load too high / full stomach</td>
-              <td><span class="fix">→ Reduce oil to 5g, ramp up by 5g daily. Deploy only 60 min after a meal.</span></td>
-            </tr>
-            <tr>
-              <td>Scale stalled</td>
-              <td>Surplus too small / inconsistent timing</td>
-              <td><span class="fix">→ +1 tbsp olive oil (+120 kcal). Run calibration algorithm Sunday.</span></td>
-            </tr>
-          </table>
-        </div>
-        <div class="preview-blur"><span class="preview-blur-label">5 more sections inside</span></div>
       </div>
     </div>
   </div>
@@ -855,6 +942,62 @@ document.querySelectorAll('[data-buy]').forEach(btn=>{
     window.open(GUMROAD_URL+'?wanted=true','_blank','width=760,height=620,left='+(screen.width/2-380)+',top='+(screen.height/2-310)+',resizable=yes,scrollbars=yes');
   });
 });
+/* ── DOC SLIDER ── */
+(function(){
+  const slides=document.querySelectorAll('.doc-slide');
+  const dots=document.querySelectorAll('.doc-nav-dot');
+  if(!slides.length)return;
+  let cur=0;
+
+  function goTo(i){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur=i;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+  }
+
+  dots.forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.slide)));
+  setInterval(()=>goTo((cur+1)%slides.length),2000);
+})();
+
+/* ── 30-DAY TRACKER ── */
+(function(){
+  const grid=document.getElementById('tracker-grid');
+  if(!grid)return;
+  const done=new Set();
+
+  for(let i=1;i<=30;i++){
+    const d=document.createElement('div');
+    d.className='tracker-day';
+    d.innerHTML=`<span class="day-num">${i}</span>`;
+    d.addEventListener('click',()=>{
+      if(done.has(i)){done.delete(i);d.classList.remove('done')}
+      else{done.add(i);d.classList.add('done')}
+      const doneEl=document.getElementById('tracker-done');
+      const streakEl=document.getElementById('tracker-streak');
+      if(doneEl)doneEl.textContent=done.size;
+      let streak=0;
+      for(let j=30;j>=1;j--){if(done.has(j))streak++;else break;}
+      if(streakEl)streakEl.textContent=streak;
+    });
+    grid.appendChild(d);
+  }
+})();
+
+/* ── ANIMATED ICONS ── */
+(function(){
+  document.querySelectorAll('.ic-icon').forEach(icon=>{
+    const frames=icon.querySelectorAll('.icon-frame');
+    if(frames.length<2)return;
+    let current=0;
+    setInterval(()=>{
+      frames[current].classList.add('hidden');
+      current=(current+1)%frames.length;
+      frames[current].classList.remove('hidden');
+    },2000+Math.random()*1000);
+  });
+})();
 </script>
 </body>
 </html>
